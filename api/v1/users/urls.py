@@ -1,4 +1,8 @@
-from api.v1.users.views import MyObtainTokenPairView, RegisterView
+from api.v1.users.views import (
+    MyObtainTokenPairView,
+    RegisterView,
+    UpdateUserProfileView,
+)
 
 from django.urls import path
 
@@ -12,6 +16,7 @@ from rest_framework_simplejwt.views import (
 
 router = routers.SimpleRouter()
 router.register(r"register", RegisterView, basename="register")
+router.register(r"update_profile", UpdateUserProfileView)
 
 urlpatterns = [
     path("login/", MyObtainTokenPairView.as_view(), name="token_obtain_pair"),
