@@ -1,3 +1,5 @@
+from django.contrib.auth.password_validation import validate_password
+
 from rest_framework import serializers, validators
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -62,3 +64,11 @@ class UpdateUserProfileSerializer(RegisterSerializer, serializers.ModelSerialize
         instance.save()
 
         return instance
+
+
+class ChangeUserPasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(allow_blank=False)
+    new_password = serializers.CharField(
+        validators=[validate_password],
+        allow_blank=False,
+    )

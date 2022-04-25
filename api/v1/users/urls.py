@@ -1,4 +1,5 @@
 from api.v1.users.views import (
+    ChangeUserPasswordView,
     MyObtainTokenPairView,
     RegisterView,
     UpdateUserProfileView,
@@ -17,6 +18,7 @@ from rest_framework_simplejwt.views import (
 router = routers.SimpleRouter()
 router.register(r"register", RegisterView, basename="register")
 router.register(r"update_profile", UpdateUserProfileView)
+router.register(r"change_password", ChangeUserPasswordView, basename="password")
 
 urlpatterns = [
     path("login/", MyObtainTokenPairView.as_view(), name="token_obtain_pair"),
