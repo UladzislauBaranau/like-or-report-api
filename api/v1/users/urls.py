@@ -7,8 +7,13 @@ from api.v1.users.views import (
 
 from django.urls import path
 
-from rest_framework import routers
+from django_rest_passwordreset.views import (
+    ResetPasswordConfirmViewSet,
+    ResetPasswordRequestTokenViewSet,
+    ResetPasswordValidateTokenViewSet,
+)
 
+from rest_framework import routers
 
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
@@ -19,6 +24,22 @@ router = routers.SimpleRouter()
 router.register(r"register", RegisterView, basename="register")
 router.register(r"update_profile", UpdateUserProfileView)
 router.register(r"change_password", ChangeUserPasswordView, basename="password")
+
+router.register(
+    r"password-reset/validate-token",
+    ResetPasswordValidateTokenViewSet,
+    basename="reset-password-validate",
+)
+router.register(
+    r"password-reset/confirm",
+    ResetPasswordConfirmViewSet,
+    basename="reset-password-confirm",
+)
+router.register(
+    r"password-reset",
+    ResetPasswordRequestTokenViewSet,
+    basename="reset-password-request",
+)
 
 urlpatterns = [
     path("login/", MyObtainTokenPairView.as_view(), name="token_obtain_pair"),

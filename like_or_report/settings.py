@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "images",
     "rest_framework",
     "rest_framework_simplejwt",
+    "django_rest_passwordreset",
 ]
 
 MIDDLEWARE = [
@@ -168,3 +169,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Email backend
+# https://docs.djangoproject.com/en/3.2/topics/email/#console-backend
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
