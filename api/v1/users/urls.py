@@ -21,10 +21,22 @@ from rest_framework_simplejwt.views import (
 )
 
 router = routers.SimpleRouter()
-router.register(r"register", RegisterView, basename="register")
-router.register(r"update_profile", UpdateUserProfileView)
-router.register(r"change_password", ChangeUserPasswordView, basename="password")
 
+router.register(
+    r"register",
+    RegisterView,
+    basename="register",
+)
+router.register(
+    r"update-profile",
+    UpdateUserProfileView,
+    basename="update-profile",
+)
+router.register(
+    r"password-change",
+    ChangeUserPasswordView,
+    basename="change-password",
+)
 router.register(
     r"password-reset/validate-token",
     ResetPasswordValidateTokenViewSet,
@@ -42,9 +54,9 @@ router.register(
 )
 
 urlpatterns = [
-    path("login/", MyObtainTokenPairView.as_view(), name="token_obtain_pair"),
-    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
+    path("login/", MyObtainTokenPairView.as_view(), name="token-obtain-pair"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token-refresh"),
+    path("token/verify/", TokenVerifyView.as_view(), name="token-verify"),
 ]
 
 urlpatterns += router.urls
