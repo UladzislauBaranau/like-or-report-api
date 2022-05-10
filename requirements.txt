@@ -4,6 +4,9 @@ djangorestframework-simplejwt==5.1.0
 django-rest-passwordreset==1.2.1
 django-axes==5.32.0
 django-environ==0.8.1
+pytest==7.1.2
+pytest-django==4.5.2
+pytest-cov==3.0.0
 flake8==4.0.1
 flake8-commas==2.1.0
 flake8-import-order==0.18.1
