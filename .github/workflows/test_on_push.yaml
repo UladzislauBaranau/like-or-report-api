@@ -1,4 +1,4 @@
-name: Run tests on any push
+name: Testing
 
 on: [push]
 
@@ -12,7 +12,14 @@ jobs:
         with:
           python-version: '3.8'
           architecture: 'x64'
+      # Installing project dependencies
       - name: Install requirements
         run: pip install -r requirements.txt
+      # Running code formatter
+      - name: Control code style with Black
+        run: black .
+      - name: Control code style with Flake
+        run: flake8 .
+      # Running pytest
       - name: Run tests, tests report
         run: pytest
