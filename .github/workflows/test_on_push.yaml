@@ -23,3 +23,6 @@ jobs:
       # Running pytest
       - name: Run tests, tests report
         run: pytest
+      # Upload Codecov reports
+      - name: Codecov
+        uses: codecov/codecov-action@v3
