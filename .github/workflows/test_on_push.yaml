@@ -1,6 +1,6 @@
 name: Testing
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   run_pytests:
@@ -24,5 +24,5 @@ jobs:
       - name: Run tests, tests report
         run: pytest
       # Upload Codecov reports
-      - name: Codecov
+      - name: Codecov report
         uses: codecov/codecov-action@v3
