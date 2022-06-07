@@ -13,6 +13,8 @@ def test_user(db):
         username="testuser",
         email="testemail@test.com",
         password="testpass1",
+        first_name="testuser_first_name",
+        last_name="testuser_last_name",
     )
     return user
 

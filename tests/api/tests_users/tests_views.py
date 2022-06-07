@@ -40,6 +40,17 @@ def test_fail_user_register(test_user):
     assert len(qs_users) == 1
 
 
+def test_success_login(test_user):
+    endpoint = "/api/v1/users/login/"
+    request_data = {
+        "username": "testuser",
+        "password": "testpass1",
+    }
+
+    response = client.post(endpoint, request_data)
+    assert response.status_code == status.HTTP_200_OK
+
+
 def test_success_update_user_profile(auth_client_user, test_user):
     pk = test_user.id
     endpoint = f"/api/v1/users/update-profile/{pk}/"
