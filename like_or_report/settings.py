@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users",
     "images",
+    "api.v1",
     "rest_framework",
     "rest_framework_simplejwt",
     "django_rest_passwordreset",
@@ -191,7 +192,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = env("EMAIL_HOST")
-EMAIL_PORT = 587
+EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = bool(env("EMAIL_USE_TLS"))
+
+# Celery broker URL
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#broker-url
+
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+
+# Default email address
+# https://docs.djangoproject.com/en/4.0/ref/settings/#default-from-email
+
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
