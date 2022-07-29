@@ -1,3 +1,4 @@
+from api.v1.tasks import send_greeting
 from api.v1.users.permissions import IsProfileOwner
 from api.v1.users.serializers import (
     ChangeUserPasswordSerializer,
@@ -5,6 +6,8 @@ from api.v1.users.serializers import (
     RegisterSerializer,
     UpdateUserProfileSerializer,
 )
+
+from like_or_report.settings import DEBUG
 
 from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.response import Response
@@ -15,7 +18,16 @@ from users.models import Profile
 
 
 class RegisterView(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    """
+    User registration.
+    """
+
     serializer_class = RegisterSerializer
+
+    def perform_create(self, serializer):
+        serializer.save()
+        if not DEBUG:
+            send_greeting.delay(serializer.data["username"], serializer.data["email"])
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
