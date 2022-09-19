@@ -26,8 +26,3 @@ jobs:
       # Upload Codecov reports
       - name: Codecov report
         uses: codecov/codecov-action@v2
-        with:
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage.xml
-          flags: pytest
